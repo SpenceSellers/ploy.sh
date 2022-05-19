@@ -26,3 +26,5 @@ Sure.
 ### I have limited resources. How much memory and CPU does ploy.sh use when it's not being used?
 None.
 
+### Is ploy.sh docker compatible?
+Yep. You do it by running docker commands in your build script.
