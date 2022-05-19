@@ -12,5 +12,10 @@ git init --bare
 mv post-receive hooks/post-receive
 
 PWD=$(pwd)
-echo "Ploy installed. To add a remote, run:"
-echo "git remote add deploy ssh:$USER@SERVER_URL$PWD"
+GIT_REMOTE_CMD="git remote add deploy ssh://$USER@MY_SERVER_URL$PWD"
+
+# Write the git remote command to a file in case we forget it. Because we will.
+echo $GIT_REMOTE_CMD > git_remote_command.txt
+
+echo "Ploy.sh installed. To add a remote, run:"
+echo $GIT_REMOTE_CMD
