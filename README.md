@@ -6,7 +6,7 @@ Git-based CI/CD so lightweight that it barely exists at all.
 You add your build server as a git remote repository on your projects. When you push your code up to the server, ploy.sh uses git post-receive hooks to run your build, test, and deploy scripts.
 
 ## Installing the ploy "build server" git repo on your server
-You will need git installed on your build server.
+You will need git and openssh installed on your build server.
 
     git clone https://github.com/SpenceSellers/ploy.sh.git
     ./ploy.sh/install.sh
