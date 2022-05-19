@@ -3,7 +3,7 @@
 Git-based CI/CD so lightweight that it barely exists at all.
 
 ## How does it work?
-You add your build server as a git remote repository on your projects. When you push your code up to the server, ploy.sh runs your build, test, and deploy scripts.
+You add your build server as a git remote repository on your projects. When you push your code up to the server, ploy.sh uses git post-receive hooks to run your build, test, and deploy scripts.
 
 ## Installing on your server
     git clone https://github.com/SpenceSellers/ploy.sh.git
