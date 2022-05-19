@@ -1,0 +1,45 @@
+#!/bin/bash
+set -e
+
+# Checkout the code
+mkdir -p worktree
+GIT_WORK_TREE=$(pwd)/worktree git checkout -f
+cd $(pwd)/worktree
+
+# Colors
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+RESET='\033[0m' # No Color
+
+# Run the CI/CD steps
+if [ -x ploy/build ]; then
+    echo "Building..."
+    if ./ploy/build ; then
+        echo -e "${GREEN}Build complete.${RESET}"
+    else
+        echo -e "${RED}Build failed.${RESET}"
+        exit 1
+    fi
+fi
+
+if [ -x ploy/test ]; then
+    echo "Testing..."
+    if ./ploy/test ; then
+        echo -e "${GREEN}Test complete.${RESET}"
+    else
+        echo -e "${RED}Test failed.${RESET}"
+        exit 1
+    fi
+fi
+
+if [ -x ploy/deploy ]; then
+    echo "Deploying..."
+    if ./ploy/deploy ; then
+        echo -e "${GREEN}Deploy complete.${RESET}"
+    else
+        echo -e "${GREEN}Deploy failed.${RESET}"
+        exit 1
+    fi
+fi
+
+echo "Done."
