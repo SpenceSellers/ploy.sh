@@ -12,8 +12,9 @@ GREEN='\033[0;32m'
 RESET='\033[0m' # No Color
 
 # Run the CI/CD steps
-if [ -x ploy/build ]; then
+if [ -f ploy/build ]; then
     echo "Building..."
+    chmod +x ploy/build
     if ./ploy/build ; then
         echo -e "${GREEN}Build complete.${RESET}"
     else
@@ -22,8 +23,9 @@ if [ -x ploy/build ]; then
     fi
 fi
 
-if [ -x ploy/test ]; then
+if [ -f ploy/test ]; then
     echo "Testing..."
+    chmod +x ploy/test
     if ./ploy/test ; then
         echo -e "${GREEN}Test complete.${RESET}"
     else
@@ -32,8 +34,9 @@ if [ -x ploy/test ]; then
     fi
 fi
 
-if [ -x ploy/deploy ]; then
+if [ -f ploy/deploy ]; then
     echo "Deploying..."
+    chmod +x ploy/deploy
     if ./ploy/deploy ; then
         echo -e "${GREEN}Deploy complete.${RESET}"
     else
