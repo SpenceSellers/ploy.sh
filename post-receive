@@ -1,9 +1,18 @@
 #!/bin/bash
 set -e
 
+# Read the first branch being pushed. 
+# Ploy.sh Currently only supports building one branch at a time
+# (Multiple parallel deployment branches would probably be a huge footgun to support)
+read oldrev newrev ref
+
+# Extract the branch name
+branch=$(echo $ref | cut -d/ -f3)
+echo "Checking out branch $branch"
+
 # Checkout the code
 mkdir -p worktree
-GIT_WORK_TREE=$(pwd)/worktree git checkout -f
+GIT_WORK_TREE=$(pwd)/worktree git checkout -f $branch
 cd $(pwd)/worktree
 
 # Colors
