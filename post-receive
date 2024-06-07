@@ -49,7 +49,7 @@ if [ -f ploy/deploy ]; then
     if ./ploy/deploy ; then
         echo -e "${GREEN}Deploy complete.${RESET}"
     else
-        echo -e "${GREEN}Deploy failed.${RESET}"
+        echo -e "${RED}Deploy failed.${RESET}"
         exit 1
     fi
 fi
